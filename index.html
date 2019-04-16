@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>表单渲染模板</title>
+    <style type="text/css">
+      #app {
+        padding: 32px;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="number" v-model="level">
+      <anchored-heading :level="level">Hello world!</anchored-heading>
+      <heading>我怎么了</heading>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script src="./max_five_digits.js"></script>
+    <script>
+      
+      Vue.component("anchoredHeading",{
+        name:"anchoredHeading",
+        render:function(createElement) {
+          return createElement(
+            'h'+this.level,
+            this.$slots.default
+            )
+        },
+        props:{
+          level:{
+            type:Number,
+            required:true
+          }
+        }
+      })
+
+      Vue.component("heading",{
+        name:"heading",
+        render:function(createElement) {
+          return createElement(
+            'div',
+            [createElement('a',{
+              attrs:{
+                name:"hello",
+                href:'#'
+              }
+            },this.$slots.default)
+            ])
+        }
+      })
+
+      new Vue({
+        data(){
+          return {
+            level:1,
+          }
+        }
+      }).$mount("#app");
+    </script>
+  </body>
+</html>
