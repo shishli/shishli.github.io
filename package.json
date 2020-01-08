@@ -1,0 +1,27 @@
+{
+  "name": "364967648.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/364967648/364967648.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/364967648/364967648.github.io/issues"
+  },
+  "homepage": "https://github.com/364967648/364967648.github.io#readme",
+  "devDependencies": {
+    "@vuepress/plugin-active-header-links": "^1.2.0",
+    "@vuepress/plugin-back-to-top": "^1.2.0",
+    "vuepress": "^1.2.0"
+  }
+}
