@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>启动docker容器 | 草莓熊的树洞</title>
+    <meta name="description" content="草莓熊的树洞">
+    <meta name="generator" content="VitePress v1.5.0">
+    <link rel="preload stylesheet" href="/assets/style.CjdsRuuB.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    
+    <script type="module" src="/assets/app.DiZwQSZH.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.BUXzwEYI.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.RVVD-68g.js">
+    <link rel="modulepreload" href="/assets/posts_2024_2024-12-30.创建容器并运行.md.-N-sjog7.lean.js">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="layout-container"><header class="layout-header flex justify-center items-center p-fixed"><div class="flex justify-between items-center layout-header-main"><div><img class="logo-img" alt="logo" src="/logo.png"><a href="/" class="logo-title">启动docker容器 | 草莓熊的树洞</a></div><div><a href="/feed.rss">RSS</a></div></div></header><main class="layout-main"><div class="page"><div class="page-content"><div style="position:relative;" class="vp-doc"><div><h2 id="部署portainer服务器" tabindex="-1">部署Portainer服务器 <a class="header-anchor" href="#部署portainer服务器" aria-label="Permalink to &quot;部署Portainer服务器&quot;">​</a></h2><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>管理员名称密码：admin admin123456</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>docker volume create portainer_data</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docker run： 创建一个容器</span></span>
+<span class="line"><span>-d：后台运行容器，并返回容器 ID；</span></span>
+<span class="line"><span>-p 9000:9000：指定端口映射，格式为：主机(宿主)端口：容器端口</span></span>
+<span class="line"><span>-v /var/run/docker.sock:/var/run/docker.sock： 绑定一个文件或目录到容器，格式为：主机(宿主)文件：容器文件</span></span>
+<span class="line"><span>-v portainer_data:/data：数据持久化</span></span></code></pre></div><h2 id="docker-compose部署方式" tabindex="-1">Docker Compose部署方式 <a class="header-anchor" href="#docker-compose部署方式" aria-label="Permalink to &quot;Docker Compose部署方式&quot;">​</a></h2><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#用于部署运行所依赖的服务</span></span>
+<span class="line"><span>version: &#39;3.9&#39;</span></span>
+<span class="line"><span>services:</span></span>
+<span class="line"><span>  # 基础环境组件</span></span>
+<span class="line"><span>  # 1.Portainer</span></span>
+<span class="line"><span>  portainer:</span></span>
+<span class="line"><span>    image: portainer/portainer-ce</span></span>
+<span class="line"><span>    container_name: portainer</span></span>
+<span class="line"><span>    command: -H unix:///var/run/docker.sock</span></span>
+<span class="line"><span>    restart: always</span></span>
+<span class="line"><span>    deploy:</span></span>
+<span class="line"><span>      resources:</span></span>
+<span class="line"><span>        limits:</span></span>
+<span class="line"><span>          cpus: &#39;0.50&#39;</span></span>
+<span class="line"><span>          memory: 800M</span></span>
+<span class="line"><span>        reservations:</span></span>
+<span class="line"><span>          cpus: &#39;0.1&#39;</span></span>
+<span class="line"><span>          memory: 256M</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      - &quot;9999:9000&quot;</span></span>
+<span class="line"><span>      - &quot;8000:8000&quot;</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      - /var/run/docker.sock:/var/run/docker.sock #数据文件挂载</span></span>
+<span class="line"><span>      - portainer_data:/data portainer/portainer-ce #配置文件挂载</span></span>
+<span class="line"><span>      - /etc/localtime:/etc/localtime:ro</span></span>
+<span class="line"><span>      - /etc/timezone/timezone:/etc/timezone:ro</span></span>
+<span class="line"><span># 存储卷</span></span>
+<span class="line"><span>volumes:</span></span>
+<span class="line"><span>  portainer_data:</span></span></code></pre></div><p>docker-compose up -d</p><p><strong>检查端口冲突</strong></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 检查端口冲突</span></span>
+<span class="line"><span>netstat -tuln | grep 9000</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># 停止运行中的Portainer容器</span></span>
+<span class="line"><span>docker stop &lt;container_id&gt;</span></span>
+<span class="line"><span># 删除Portainer容器（注意：这将删除该容器中的所有数据）</span></span>
+<span class="line"><span>docker rm &lt;container_id&gt;</span></span>
+<span class="line"><span># 重新运行Portainer容器，并将端口映射到8000端口</span></span>
+<span class="line"><span>docker run -d -p 8000:9000 --name portainer portainer/portainer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span>docker ps -a | grep portainer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># </span></span>
+<span class="line"><span>docker logs &lt;container_id&gt;</span></span></code></pre></div><h1 id="问题" tabindex="-1">问题 <a class="header-anchor" href="#问题" aria-label="Permalink to &quot;问题&quot;">​</a></h1><ul><li>[ ] Error response from daemon: cannot stop container: 27d8c7f096ca: permission denied</li></ul></div></div></div></div></main><footer class="layout-footer"> Copyright © 2016-2025 <a href="https://shishli.github.io/">启动docker容器 | 草莓熊的树洞</a></footer></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"changelog.md\":\"DhJVpPTR\",\"index.md\":\"CZiX1Jht\",\"posts_2020_myself.md\":\"ERAhfLgi\",\"posts_2020_webpack-concepts.md\":\"G1zN6brg\",\"posts_2020_year-end-summary.md\":\"CbniFhEo\",\"posts_2024_2024-12-26.docker安装遇到的问题.md\":\"HcPz5Z94\",\"posts_2024_2024-12-27.apt镜像源.md\":\"CvdM_FPZ\",\"posts_2024_2024-12-27.docker安装步骤.md\":\"7VRpOpPP\",\"posts_2024_2024-12-28.docker镜像加载方式.md\":\"BHUCPUU8\",\"posts_2024_2024-12-28.安装docker及配置镜像源.md\":\"CU_jGt-L\",\"posts_2024_2024-12-30.docker镜像终极大招.md\":\"C0kgUEe1\",\"posts_2024_2024-12-30.创建容器并运行.md\":\"-N-sjog7\",\"posts_2024_2024-12-31.gitee与github绑定.md\":\"tHekB3oL\",\"posts_2024_2024-12-31.静态githubpage部署.md\":\"CN_xmfLQ\",\"posts_2024_electron打包问题及配置项.md\":\"D5APa0lO\",\"posts_2024_虚拟机的网络连接.md\":\"B3HAkP2q\",\"posts_2025-01_2025-01-01.fnos部署肥羊iptv.md\":\"BpFQH7fO\",\"posts_2025-01_2025-01-01.飞牛os虚拟机安装.md\":\"zc17oXWr\",\"posts_2025-01_2025-01-02.1panel安装.md\":\"B2ZbGfdR\",\"posts_vitepress-first.md\":\"BXwRBP57\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"草莓熊的树洞\",\"description\":\"草莓熊的树洞\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>

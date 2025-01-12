@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>安装docker的过程遇到的问题2 | 草莓熊的树洞</title>
+    <meta name="description" content="草莓熊的树洞">
+    <meta name="generator" content="VitePress v1.5.0">
+    <link rel="preload stylesheet" href="/assets/style.CjdsRuuB.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    
+    <script type="module" src="/assets/app.DiZwQSZH.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.BUXzwEYI.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.RVVD-68g.js">
+    <link rel="modulepreload" href="/assets/posts_2024_2024-12-28.docker镜像加载方式.md.BHUCPUU8.lean.js">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="layout-container"><header class="layout-header flex justify-center items-center p-fixed"><div class="flex justify-between items-center layout-header-main"><div><img class="logo-img" alt="logo" src="/logo.png"><a href="/" class="logo-title">安装docker的过程遇到的问题2 | 草莓熊的树洞</a></div><div><a href="/feed.rss">RSS</a></div></div></header><main class="layout-main"><div class="page"><div class="page-content"><div style="position:relative;" class="vp-doc"><div><h1 id="问题" tabindex="-1">问题 <a class="header-anchor" href="#问题" aria-label="Permalink to &quot;问题&quot;">​</a></h1><ul><li><p>[ ] Get &quot;<a href="https://registry-1.docker.io/v2/" target="_blank" rel="noreferrer">https://registry-1.docker.io/v2/</a>&quot;: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)</p></li><li><p>[ ] Error response from daemon: Get &quot;<a href="https://registry-1.docker.io/v2/" target="_blank" rel="noreferrer">https://registry-1.docker.io/v2/</a>&quot;: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)</p></li><li><p>[x] docker 镜像加速daemon.json配置不生效</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>重启docker.service和docker.socket服务</span></span></code></pre></div></li><li><p>[x] window 版docker安装完启动wsl --update时报错</p></li><li><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>wsl update failed: update failed: updating wsl: exit code: 4294967295: running WSL command wsl.exe C:\WINDOWS\System32\wsl.exe --update --web-download: �]�ybk(403)0</span></span>
+<span class="line"><span>: exit status 0xffffffff</span></span></code></pre></div></li><li><p>[ ] Error response from daemon: Get &quot;<a href="https://index.docker.io/v1/search?q=portianer&amp;n=25" target="_blank" rel="noreferrer">https://index.docker.io/v1/search?q=portianer&amp;n=25</a>&quot;: dial tcp 128.121.243.76:443: i/o timeout</p></li></ul><p>解决办法：</p><p>wsl --update --web-download替换wsl --update</p><p>wsl --install来安装Linux子系统</p><h1 id="没有镜像等着吧" tabindex="-1">没有镜像等着吧 <a class="header-anchor" href="#没有镜像等着吧" aria-label="Permalink to &quot;没有镜像等着吧&quot;">​</a></h1></div></div></div></div></main><footer class="layout-footer"> Copyright © 2016-2025 <a href="https://shishli.github.io/">安装docker的过程遇到的问题2 | 草莓熊的树洞</a></footer></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"changelog.md\":\"DhJVpPTR\",\"index.md\":\"CZiX1Jht\",\"posts_2020_myself.md\":\"ERAhfLgi\",\"posts_2020_webpack-concepts.md\":\"G1zN6brg\",\"posts_2020_year-end-summary.md\":\"CbniFhEo\",\"posts_2024_2024-12-26.docker安装遇到的问题.md\":\"HcPz5Z94\",\"posts_2024_2024-12-27.apt镜像源.md\":\"CvdM_FPZ\",\"posts_2024_2024-12-27.docker安装步骤.md\":\"7VRpOpPP\",\"posts_2024_2024-12-28.docker镜像加载方式.md\":\"BHUCPUU8\",\"posts_2024_2024-12-28.安装docker及配置镜像源.md\":\"CU_jGt-L\",\"posts_2024_2024-12-30.docker镜像终极大招.md\":\"C0kgUEe1\",\"posts_2024_2024-12-30.创建容器并运行.md\":\"-N-sjog7\",\"posts_2024_2024-12-31.gitee与github绑定.md\":\"tHekB3oL\",\"posts_2024_2024-12-31.静态githubpage部署.md\":\"CN_xmfLQ\",\"posts_2024_electron打包问题及配置项.md\":\"D5APa0lO\",\"posts_2024_虚拟机的网络连接.md\":\"B3HAkP2q\",\"posts_2025-01_2025-01-01.fnos部署肥羊iptv.md\":\"BpFQH7fO\",\"posts_2025-01_2025-01-01.飞牛os虚拟机安装.md\":\"zc17oXWr\",\"posts_2025-01_2025-01-02.1panel安装.md\":\"B2ZbGfdR\",\"posts_vitepress-first.md\":\"BXwRBP57\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"草莓熊的树洞\",\"description\":\"草莓熊的树洞\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>
